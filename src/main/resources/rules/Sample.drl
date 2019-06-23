@@ -1,0 +1,22 @@
+package rules
+ 
+import com.javainuse.model.Message;
+ 
+rule "One"
+ruleflow-group "Group1"
+    when
+        m : Message( status == Message.HELLO, myMessage : message )
+    then
+        System.out.println( myMessage );
+        m.setMessage( "Goodbye cruel world" );
+        m.setStatus( Message.GOODBYE );
+        update( m );
+end
+
+rule "Two"
+ruleflow-group "Group1"
+    when
+        Message( status == Message.GOODBYE, myMessage : message )
+    then
+        System.out.println( myMessage );
+end

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="com.javacodegeeks.drools" name="Drools Work Flow Example" tns:packageName="com.javacodegeeks.drools" >
+
+    <!-- nodes -->
+    <scriptTask id="_2" name="Action1" >
+      <script>System.out.println("Action1");</script>
+    </scriptTask>
+    <startEvent id="_1"  isInterrupting="true"></startEvent>
+    <endEvent id="_3" ><terminateEventDefinition /></endEvent>
+    <inclusiveGateway id="_jbpm-unique-1" name="Gateway" gatewayDirection="Diverging" ></inclusiveGateway>
+    <parallelGateway id="_jbpm-unique-3" name="Gateway" gatewayDirection="Converging" ></parallelGateway>
+    <scriptTask id="_jbpm-unique-4" name="Action2" >
+      <script>System.out.println("Action2");</script>
+    </scriptTask>
+    <scriptTask id="_jbpm-unique-5" name="Action3" >
+      <script>System.out.println("Action3")</script>
+    </scriptTask>
+    <businessRuleTask id="_jbpm-unique-6" name="A" g:ruleFlowGroup="Group1" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-1-_2" sourceRef="_jbpm-unique-1" targetRef="_2" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-6-_3" sourceRef="_jbpm-unique-6" targetRef="_3" />
+    <sequenceFlow id="_1-_jbpm-unique-1" sourceRef="_1" targetRef="_jbpm-unique-1" />
+    <sequenceFlow id="_2-_jbpm-unique-3" sourceRef="_2" targetRef="_jbpm-unique-3" />
+    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-3" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-3" />
+    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-4" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-4" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-5" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-5" />
+    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-6" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-6" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="com.javacodegeeks.drools" >
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="222" y="110" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="140" y="38" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="669" y="204" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
+        <dc:Bounds x="141" y="201" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" >
+        <dc:Bounds x="339" y="198" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" >
+        <dc:Bounds x="230" y="279" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
+        <dc:Bounds x="429" y="200" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" >
+        <dc:Bounds x="553" y="204" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_2" >
+        <di:waypoint x="165" y="225" />
+        <di:waypoint x="262" y="134" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-6-_3" >
+        <di:waypoint x="593" y="228" />
+        <di:waypoint x="693" y="228" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_jbpm-unique-1" >
+        <di:waypoint x="164" y="62" />
+        <di:waypoint x="165" y="225" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_jbpm-unique-3" >
+        <di:waypoint x="262" y="134" />
+        <di:waypoint x="363" y="222" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-4-_jbpm-unique-3" >
+        <di:waypoint x="270" y="303" />
+        <di:waypoint x="363" y="222" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-4" >
+        <di:waypoint x="165" y="225" />
+        <di:waypoint x="270" y="303" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-3-_jbpm-unique-5" >
+        <di:waypoint x="363" y="222" />
+        <di:waypoint x="469" y="224" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-5-_jbpm-unique-6" >
+        <di:waypoint x="469" y="224" />
+        <di:waypoint x="593" y="228" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
