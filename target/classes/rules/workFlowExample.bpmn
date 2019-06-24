@@ -9,7 +9,7 @@
     <scriptTask completionQuantity="1" id="_2" isForCompensation="false" name="Action1" startQuantity="1">
       <incoming>_jbpm-unique-1-_2</incoming>
       <outgoing>_2-_jbpm-unique-3</outgoing>
-      <script><![CDATA[HelloService.getInstance().sayHello(message);]]></script>
+      <script><![CDATA[HelloService.getInstance().action1(message);]]></script>
     </scriptTask>
     <startEvent id="__1" isInterrupting="true" parallelMultiple="false">
       <outgoing>_1-_jbpm-unique-1</outgoing>
@@ -25,20 +25,20 @@
       <outgoing>_jbpm-unique-1-_2</outgoing>
       <outgoing>_jbpm-unique-1-_jbpm-unique-4</outgoing>
     </inclusiveGateway>
-    <parallelGateway gatewayDirection="Converging" id="_jbpm-unique-3" name="Gateway">
+    <inclusiveGateway gatewayDirection="Converging" id="_jbpm-unique-3" name="Gateway">
       <incoming>_2-_jbpm-unique-3</incoming>
       <incoming>_jbpm-unique-4-_jbpm-unique-3</incoming>
       <outgoing>_jbpm-unique-3-_jbpm-unique-5</outgoing>
-    </parallelGateway>
+    </inclusiveGateway>
     <scriptTask completionQuantity="1" id="_jbpm-unique-4" isForCompensation="false" name="Action2" startQuantity="1">
       <incoming>_jbpm-unique-1-_jbpm-unique-4</incoming>
       <outgoing>_jbpm-unique-4-_jbpm-unique-3</outgoing>
-      <script><![CDATA[System.out.println("Action2");]]></script>
+      <script><![CDATA[HelloService.getInstance().action2(message);]]></script>
     </scriptTask>
     <scriptTask completionQuantity="1" id="_jbpm-unique-5" isForCompensation="false" name="Action3" startQuantity="1">
       <incoming>_jbpm-unique-3-_jbpm-unique-5</incoming>
       <outgoing>_jbpm-unique-5-_jbpm-unique-6</outgoing>
-      <script><![CDATA[System.out.println("Action3")]]></script>
+      <script><![CDATA[HelloService.getInstance().action3(message);]]></script>
     </scriptTask>
     <businessRuleTask completionQuantity="1" g:ruleFlowGroup="Group1" id="_jbpm-unique-6" implementation="##unspecified" isForCompensation="false" name="A" startQuantity="1">
       <incoming>_jbpm-unique-5-_jbpm-unique-6</incoming>
@@ -66,52 +66,55 @@
   <bpmndi:BPMNDiagram id="Yaoqiang_Diagram-com.javacodegeeks.drools" name="Untitled Diagram" resolution="96.0">
     <bpmndi:BPMNPlane bpmnElement="com.javacodegeeks.drools">
       <bpmndi:BPMNShape bpmnElement="_2" id="Yaoqiang-_2">
-        <dc:Bounds height="55.0" width="85.0" x="301.0" y="150.0"/>
+        <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="19.84" width="43.0" x="322.0" y="169.58"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="__1" id="Yaoqiang-__1">
-        <dc:Bounds height="32.0" width="32.0" x="211.0" y="38.0"/>
+        <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="19.84" width="6.0" x="224.0" y="78.06"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" id="Yaoqiang-_3">
-        <dc:Bounds height="32.0" width="32.0" x="738.0" y="200.0"/>
+        <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="19.84" width="6.0" x="751.0" y="240.06"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" id="Yaoqiang-_jbpm-unique-1">
-        <dc:Bounds height="42.0" width="42.0" x="212.0" y="201.0"/>
+        <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="19.84" width="51.0" x="153.5" y="218.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" id="Yaoqiang-_jbpm-unique-3">
-        <dc:Bounds height="42.0" width="42.0" x="410.0" y="198.0"/>
+        <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="19.84" width="51.0" x="351.5" y="215.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" id="Yaoqiang-_jbpm-unique-4">
-        <dc:Bounds height="55.0" width="85.0" x="301.0" y="252.0"/>
+        <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="19.84" width="43.0" x="322.0" y="271.58"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" id="Yaoqiang-_jbpm-unique-5">
-        <dc:Bounds height="55.0" width="85.0" x="500.0" y="200.0"/>
+        <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="19.84" width="43.0" x="521.0" y="219.58"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" id="Yaoqiang-_jbpm-unique-6">
-        <dc:Bounds height="55.0" width="85.0" x="622.0" y="200.0"/>
+        <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="19.84" width="14.0" x="657.5" y="219.58"/>
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="StartEvent_1">
+        <dc:Bounds height="0.0" width="0.0" x="-194.0" y="-152.5"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_2" id="Yaoqiang-_jbpm-unique-1-_2">
         <di:waypoint x="251.0" y="225.0"/>
