@@ -21,16 +21,13 @@ public class JewelleryShopController {
 	}
 
 	@RequestMapping(value = "/getDiscount", method = RequestMethod.GET, produces = "application/json")
-	public Message getQuestions(@RequestParam(required = false) String type) {
+	public Message getQuestions(@RequestParam(required = true) String msg, @RequestParam(required = true) Integer cat_id) {
 
-//		Product product = new Product();
-//		product.setType(type);
                 Message message = new Message();
-                message.setMessage("Rule is fired");
+                message.setMessage(msg);
+				message.setCat_id(cat_id);
                 message.setStatus(Message.HELLO);
-//		jewelleryShopService.getProductDiscount(product);
                 jewelleryShopService.getProductDiscount(message);
-                
 
 		return message;
 	}

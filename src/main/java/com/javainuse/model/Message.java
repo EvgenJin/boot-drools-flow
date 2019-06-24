@@ -9,8 +9,8 @@ public class Message {
 	public static final int GOODBYE = 1;
 
 	private String message;
-
 	private int status;
+	private Integer cat_id;
 
 	public String getMessage() {
 		return this.message;
@@ -26,6 +26,13 @@ public class Message {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public Integer getCat_id() {
+		return this.cat_id;
+	}
+	public void setCat_id(Integer cat_id) {
+		this.cat_id = cat_id;
 	}
 
 }

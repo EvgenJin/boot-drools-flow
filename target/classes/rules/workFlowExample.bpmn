@@ -1,117 +1,179 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<definitions id="Definition"
-             targetNamespace="http://www.jboss.org/drools"
-             typeLanguage="http://www.java.com/javaTypes"
-             expressionLanguage="http://www.mvel.org/2.0"
-             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
-             xmlns:g="http://www.jboss.org/drools/flow/gpd"
-             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
-             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
-             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
-             xmlns:tns="http://www.jboss.org/drools">
-
-  <process processType="Private" isExecutable="true" id="com.javacodegeeks.drools" name="Drools Work Flow Example" tns:packageName="com.javacodegeeks.drools" >
-
-    <!-- nodes -->
-    <scriptTask id="_2" name="Action1" >
-      <script>System.out.println("Action1");</script>
+<?xml version="1.0" encoding="WINDOWS-1251" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:tns="http://www.jboss.org/drools" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:yaoqiang="http://bpmn.sourceforge.net" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="4.0.0-beta.1" expressionLanguage="http://www.mvel.org/2.0" id="Definition" name="" targetNamespace="http://www.jboss.org/drools" typeLanguage="http://www.java.com/javaTypes" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
+  <itemDefinition id="_messageItem" isCollection="false" itemKind="Information" structureRef="com.javainuse.model.Message"/>
+  <process id="com.javacodegeeks.drools" isClosed="false" isExecutable="true" name="Drools Work Flow Example" processType="Private" tns:packageName="com.javacodegeeks.drools">
+    <extensionElements>
+      <tns:import name="com.javainuse.service.HelloService"/>
+    </extensionElements>
+    <property id="message" itemSubjectRef="_messageItem"/>
+    <scriptTask completionQuantity="1" id="_2" isForCompensation="false" name="Action1" startQuantity="1">
+      <incoming>_jbpm-unique-1-_2</incoming>
+      <outgoing>_2-_jbpm-unique-3</outgoing>
+      <script><![CDATA[HelloService.getInstance().sayHello(message);]]></script>
     </scriptTask>
-    <startEvent id="_1"  isInterrupting="true"></startEvent>
-    <endEvent id="_3" ><terminateEventDefinition /></endEvent>
-    <inclusiveGateway id="_jbpm-unique-1" name="Gateway" gatewayDirection="Diverging" ></inclusiveGateway>
-    <parallelGateway id="_jbpm-unique-3" name="Gateway" gatewayDirection="Converging" ></parallelGateway>
-    <scriptTask id="_jbpm-unique-4" name="Action2" >
-      <script>System.out.println("Action2");</script>
+    <startEvent id="__1" isInterrupting="true" parallelMultiple="false">
+      <outgoing>_1-_jbpm-unique-1</outgoing>
+      <outputSet/>
+    </startEvent>
+    <endEvent id="_3">
+      <incoming>_jbpm-unique-6-_3</incoming>
+      <inputSet/>
+      <terminateEventDefinition id="_3_ED_1"/>
+    </endEvent>
+    <inclusiveGateway gatewayDirection="Diverging" id="_jbpm-unique-1" name="Gateway">
+      <incoming>_1-_jbpm-unique-1</incoming>
+      <outgoing>_jbpm-unique-1-_2</outgoing>
+      <outgoing>_jbpm-unique-1-_jbpm-unique-4</outgoing>
+    </inclusiveGateway>
+    <parallelGateway gatewayDirection="Converging" id="_jbpm-unique-3" name="Gateway">
+      <incoming>_2-_jbpm-unique-3</incoming>
+      <incoming>_jbpm-unique-4-_jbpm-unique-3</incoming>
+      <outgoing>_jbpm-unique-3-_jbpm-unique-5</outgoing>
+    </parallelGateway>
+    <scriptTask completionQuantity="1" id="_jbpm-unique-4" isForCompensation="false" name="Action2" startQuantity="1">
+      <incoming>_jbpm-unique-1-_jbpm-unique-4</incoming>
+      <outgoing>_jbpm-unique-4-_jbpm-unique-3</outgoing>
+      <script><![CDATA[System.out.println("Action2");]]></script>
     </scriptTask>
-    <scriptTask id="_jbpm-unique-5" name="Action3" >
-      <script>System.out.println("Action3")</script>
+    <scriptTask completionQuantity="1" id="_jbpm-unique-5" isForCompensation="false" name="Action3" startQuantity="1">
+      <incoming>_jbpm-unique-3-_jbpm-unique-5</incoming>
+      <outgoing>_jbpm-unique-5-_jbpm-unique-6</outgoing>
+      <script><![CDATA[System.out.println("Action3")]]></script>
     </scriptTask>
-    <businessRuleTask id="_jbpm-unique-6" name="A" g:ruleFlowGroup="Group1" >
+    <businessRuleTask completionQuantity="1" g:ruleFlowGroup="Group1" id="_jbpm-unique-6" implementation="##unspecified" isForCompensation="false" name="A" startQuantity="1">
+      <incoming>_jbpm-unique-5-_jbpm-unique-6</incoming>
+      <outgoing>_jbpm-unique-6-_3</outgoing>
       <ioSpecification>
-        <inputSet>
-        </inputSet>
-        <outputSet>
-        </outputSet>
+        <inputSet/>
+        <outputSet/>
       </ioSpecification>
     </businessRuleTask>
-
-    <!-- connections -->
-    <sequenceFlow id="_jbpm-unique-1-_2" sourceRef="_jbpm-unique-1" targetRef="_2" name="constraint" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
+    <sequenceFlow id="_jbpm-unique-1-_2" name="constraint" sourceRef="_jbpm-unique-1" targetRef="_2" tns:priority="1">
+      <conditionExpression language="http://www.java.com/java" xsi:type="tFormalExpression">return (message.getCat_id() == 0);</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="_jbpm-unique-6-_3" sourceRef="_jbpm-unique-6" targetRef="_3" />
-    <sequenceFlow id="_1-_jbpm-unique-1" sourceRef="_1" targetRef="_jbpm-unique-1" />
-    <sequenceFlow id="_2-_jbpm-unique-3" sourceRef="_2" targetRef="_jbpm-unique-3" />
-    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-3" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-3" />
-    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-4" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-4" name="constraint" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
+    <sequenceFlow id="_jbpm-unique-6-_3" sourceRef="_jbpm-unique-6" targetRef="_3"/>
+    <sequenceFlow id="_1-_jbpm-unique-1" sourceRef="__1" targetRef="_jbpm-unique-1"/>
+    <sequenceFlow id="_2-_jbpm-unique-3" sourceRef="_2" targetRef="_jbpm-unique-3"/>
+    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-3" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-3"/>
+    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-4" name="constraint" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-4" tns:priority="1">
+      <conditionExpression language="http://www.java.com/java" xsi:type="tFormalExpression">return (message.getCat_id() != 0);</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-5" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-5" />
-    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-6" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-6" />
-
+    <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-5" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-5"/>
+    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-6" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-6"/>
   </process>
 
-  <bpmndi:BPMNDiagram>
-    <bpmndi:BPMNPlane bpmnElement="com.javacodegeeks.drools" >
-      <bpmndi:BPMNShape bpmnElement="_2" >
-        <dc:Bounds x="222" y="110" width="80" height="48" />
+
+  <bpmndi:BPMNDiagram id="Yaoqiang_Diagram-com.javacodegeeks.drools" name="Untitled Diagram" resolution="96.0">
+    <bpmndi:BPMNPlane bpmnElement="com.javacodegeeks.drools">
+      <bpmndi:BPMNShape bpmnElement="_2" id="Yaoqiang-_2">
+        <dc:Bounds height="55.0" width="85.0" x="301.0" y="150.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="43.0" x="322.0" y="169.58"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="140" y="38" width="48" height="48" />
+      <bpmndi:BPMNShape bpmnElement="__1" id="Yaoqiang-__1">
+        <dc:Bounds height="32.0" width="32.0" x="211.0" y="38.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="6.0" x="224.0" y="78.06"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_3" >
-        <dc:Bounds x="669" y="204" width="48" height="48" />
+      <bpmndi:BPMNShape bpmnElement="_3" id="Yaoqiang-_3">
+        <dc:Bounds height="32.0" width="32.0" x="738.0" y="200.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="6.0" x="751.0" y="240.06"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
-        <dc:Bounds x="141" y="201" width="48" height="48" />
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" id="Yaoqiang-_jbpm-unique-1">
+        <dc:Bounds height="42.0" width="42.0" x="212.0" y="201.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="51.0" x="153.5" y="218.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" >
-        <dc:Bounds x="339" y="198" width="48" height="48" />
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" id="Yaoqiang-_jbpm-unique-3">
+        <dc:Bounds height="42.0" width="42.0" x="410.0" y="198.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="51.0" x="351.5" y="215.0"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" >
-        <dc:Bounds x="230" y="279" width="80" height="48" />
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" id="Yaoqiang-_jbpm-unique-4">
+        <dc:Bounds height="55.0" width="85.0" x="301.0" y="252.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="43.0" x="322.0" y="271.58"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
-        <dc:Bounds x="429" y="200" width="80" height="48" />
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" id="Yaoqiang-_jbpm-unique-5">
+        <dc:Bounds height="55.0" width="85.0" x="500.0" y="200.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="43.0" x="521.0" y="219.58"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" >
-        <dc:Bounds x="553" y="204" width="80" height="48" />
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" id="Yaoqiang-_jbpm-unique-6">
+        <dc:Bounds height="55.0" width="85.0" x="622.0" y="200.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="14.0" x="657.5" y="219.58"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_2" >
-        <di:waypoint x="165" y="225" />
-        <di:waypoint x="262" y="134" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_2" id="Yaoqiang-_jbpm-unique-1-_2">
+        <di:waypoint x="251.0" y="225.0"/>
+        <di:waypoint x="281.0" y="225.0"/>
+        <di:waypoint x="281.0" y="174.0"/>
+        <di:waypoint x="301.0" y="177.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="34.84" width="60.0" x="251.0" y="188.83"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-6-_3" >
-        <di:waypoint x="593" y="228" />
-        <di:waypoint x="693" y="228" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-3-_jbpm-unique-5" id="Yaoqiang-_jbpm-unique-3-_jbpm-unique-5">
+        <di:waypoint x="452.0" y="219.0"/>
+        <di:waypoint x="500.0" y="227.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="6.0" x="473.0" y="213.33"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_1-_jbpm-unique-1" >
-        <di:waypoint x="164" y="62" />
-        <di:waypoint x="165" y="225" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-5-_jbpm-unique-6" id="Yaoqiang-_jbpm-unique-5-_jbpm-unique-6">
+        <di:waypoint x="585.0" y="227.5"/>
+        <di:waypoint x="622.0" y="227.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="6.0" x="600.5" y="217.58"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_2-_jbpm-unique-3" >
-        <di:waypoint x="262" y="134" />
-        <di:waypoint x="363" y="222" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-4-_jbpm-unique-3" id="Yaoqiang-_jbpm-unique-4-_jbpm-unique-3">
+        <di:waypoint x="386.0" y="276.0"/>
+        <di:waypoint x="434.0" y="276.0"/>
+        <di:waypoint x="434.0" y="237.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="6.0" x="426.5" y="266.08"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-4-_jbpm-unique-3" >
-        <di:waypoint x="270" y="303" />
-        <di:waypoint x="363" y="222" />
+      <bpmndi:BPMNEdge bpmnElement="_2-_jbpm-unique-3" id="Yaoqiang-_2-_jbpm-unique-3">
+        <di:waypoint x="386.0" y="174.0"/>
+        <di:waypoint x="434.0" y="174.0"/>
+        <di:waypoint x="434.0" y="201.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="6.0" x="420.5" y="164.08"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-4" >
-        <di:waypoint x="165" y="225" />
-        <di:waypoint x="270" y="303" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-4" id="Yaoqiang-_jbpm-unique-1-_jbpm-unique-4">
+        <di:waypoint x="236.0" y="240.0"/>
+        <di:waypoint x="236.0" y="276.0"/>
+        <di:waypoint x="301.0" y="276.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="34.84" width="60.0" x="220.5" y="258.58"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-3-_jbpm-unique-5" >
-        <di:waypoint x="363" y="222" />
-        <di:waypoint x="469" y="224" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-6-_3" id="Yaoqiang-_jbpm-unique-6-_3">
+        <di:waypoint x="707.0" y="227.5"/>
+        <di:waypoint x="738.0" y="216.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="6.0" x="719.5" y="211.83"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-5-_jbpm-unique-6" >
-        <di:waypoint x="469" y="224" />
-        <di:waypoint x="593" y="228" />
+      <bpmndi:BPMNEdge bpmnElement="_1-_jbpm-unique-1" id="Yaoqiang-_1-_jbpm-unique-1">
+        <di:waypoint x="227.5" y="69.99218559171948"/>
+        <di:waypoint x="227.5" y="206.5"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="19.84" width="6.0" x="224.5" y="128.33"/>
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
-
 </definitions>

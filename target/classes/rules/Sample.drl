@@ -18,5 +18,5 @@ ruleflow-group "Group1"
     when
         Message( status == Message.GOODBYE, myMessage : message )
     then
-        System.out.println( myMessage );
+        System.out.println( "rule two " + myMessage );
 end
