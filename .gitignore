@@ -18,10 +18,10 @@
 *.zip
 *.tar.gz
 *.rar
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
 target/*
-
 .idea/*
+boot-drools-flow.iml
+target/classes/rules/Sample.drl
+target/classes/rules/workFlowExample.bpmn

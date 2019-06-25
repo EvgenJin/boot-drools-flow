@@ -20,3 +20,12 @@ ruleflow-group "Group1"
     then
         System.out.println( "rule two " + myMessage );
 end
+
+
+rule "3"
+ruleflow-group "Group2"
+    when
+
+    then
+        System.out.println( "Get started" );
+end
