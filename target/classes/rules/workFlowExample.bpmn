@@ -1,66 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:tns="http://www.jboss.org/drools" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:yaoqiang="http://bpmn.sourceforge.net" id="Definition" name="" targetNamespace="http://www.jboss.org/drools" expressionLanguage="http://www.mvel.org/2.0" typeLanguage="http://www.java.com/javaTypes" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="4.0.0-beta.1" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:tns="http://www.jboss.org/drools" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="Definition" name="" targetNamespace="http://www.jboss.org/drools" expressionLanguage="http://www.mvel.org/2.0" typeLanguage="http://www.java.com/javaTypes" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="4.0.0-beta.1" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://bpmn.sourceforge.net/schemas/BPMN20.xsd">
   <itemDefinition id="_messageItem" itemKind="Information" structureRef="com.javainuse.model.Message" />
   <process id="com.javacodegeeks.drools" name="Drools Work Flow Example" processType="Private" isClosed="false" isExecutable="true" tns:packageName="com.javainuse">
     <extensionElements>
       <tns:import name="com.javainuse.service.HelloService" />
     </extensionElements>
     <property id="message" itemSubjectRef="_messageItem" />
-    <scriptTask id="_2" name="Action1">
-      <incoming>_jbpm-unique-1-_2</incoming>
-      <outgoing>_2-_jbpm-unique-3</outgoing>
-      <script>HelloService.getInstance().action1(message);</script>
-    </scriptTask>
-    <startEvent id="__1">
+
+    <startEvent id="start">
       <outgoing>_1-_jbpm-unique-1</outgoing>
       <outputSet />
     </startEvent>
-    <endEvent id="_3">
-      <incoming>_jbpm-unique-6-_3</incoming>
-      <inputSet />
-      <terminateEventDefinition id="_3_ED_1" />
-    </endEvent>
-    <inclusiveGateway id="_jbpm-unique-1" name="Gateway" gatewayDirection="Diverging">
-      <incoming>Start2BR_1</incoming>
-      <outgoing>_jbpm-unique-1-_2</outgoing>
-      <outgoing>_jbpm-unique-1-_jbpm-unique-4</outgoing>
-    </inclusiveGateway>
-    <inclusiveGateway id="_jbpm-unique-3" name="Gateway" gatewayDirection="Converging">
-      <incoming>_2-_jbpm-unique-3</incoming>
-      <incoming>_jbpm-unique-4-_jbpm-unique-3</incoming>
-      <outgoing>_jbpm-unique-3-_jbpm-unique-5</outgoing>
-    </inclusiveGateway>
-    <scriptTask id="_jbpm-unique-4" name="Action2">
-      <incoming>_jbpm-unique-1-_jbpm-unique-4</incoming>
-      <outgoing>_jbpm-unique-4-_jbpm-unique-3</outgoing>
-      <script>HelloService.getInstance().action2(message);</script>
-    </scriptTask>
-    <scriptTask id="_jbpm-unique-5" name="Action3">
-      <incoming>_jbpm-unique-3-_jbpm-unique-5</incoming>
-      <outgoing>_jbpm-unique-5-_jbpm-unique-6</outgoing>
-      <script>HelloService.getInstance().action3(message);</script>
-    </scriptTask>
-    <businessRuleTask id="_jbpm-unique-6" name="A" implementation="##unspecified" g:ruleFlowGroup="Group1">
-      <incoming>_jbpm-unique-5-_jbpm-unique-6</incoming>
-      <outgoing>_jbpm-unique-6-_3</outgoing>
-      <ioSpecification>
-        <inputSet />
-        <outputSet />
-      </ioSpecification>
-    </businessRuleTask>
-    <sequenceFlow id="_jbpm-unique-1-_2" name="constraint" sourceRef="_jbpm-unique-1" targetRef="_2" tns:priority="1">
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java">return (message.getCat_id() == 0);</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_jbpm-unique-6-_3" sourceRef="_jbpm-unique-6" targetRef="_3" />
-    <sequenceFlow id="_1-_jbpm-unique-1" sourceRef="__1" targetRef="BRT_1" />
-    <sequenceFlow id="_2-_jbpm-unique-3" sourceRef="_2" targetRef="_jbpm-unique-3" />
-    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-3" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-3" />
-    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-4" name="constraint" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-4" tns:priority="1">
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java">return (message.getCat_id() != 0);</conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-5" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-5" />
-    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-6" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-6" />
-    <businessRuleTask id="BRT_1" name="BR_1" implementation="##unspecified" g:ruleFlowGroup="Group2">
+
+    <sequenceFlow id="_1-_jbpm-unique-1" sourceRef="start" targetRef="BRT_1"/>
+    <businessRuleTask id="BRT_1" name="Rules1" implementation="##unspecified" g:ruleFlowGroup="Group2">
       <incoming>_1-_jbpm-unique-1</incoming>
       <outgoing>Start2BR_1</outgoing>
       <ioSpecification>
@@ -68,39 +21,99 @@
         <outputSet />
       </ioSpecification>
     </businessRuleTask>
-    <sequenceFlow id="Start2BR_1" sourceRef="BRT_1" targetRef="_jbpm-unique-1" />
+    <sequenceFlow id="Start2BR_1" sourceRef="BRT_1" targetRef="GW_1" />
+
+
+    <inclusiveGateway id="GW_1" name="Gateway1" gatewayDirection="Diverging">
+      <incoming>Start2BR_1</incoming>
+      <outgoing>_jbpm-unique-1-_2</outgoing>
+      <outgoing>_jbpm-unique-1-_jbpm-unique-4</outgoing>
+    </inclusiveGateway>
+
+    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-4" name="constraint" sourceRef="GW_1" targetRef="Action2" tns:priority="1">
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java">return (message.getCat_id() != 0);</conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-3" sourceRef="Action2" targetRef="GW_2" />
+    <sequenceFlow id="_2-_jbpm-unique-3" sourceRef="Action1" targetRef="GW_2" />
+
+
+    <sequenceFlow id="_jbpm-unique-1-_2" name="constraint" sourceRef="GW_1" targetRef="Action1" tns:priority="1">
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java">return (message.getCat_id() == 0);</conditionExpression>
+    </sequenceFlow>
+    <scriptTask id="Action1" name="Action1">
+      <incoming>_jbpm-unique-1-_2</incoming>
+      <outgoing>_2-_jbpm-unique-3</outgoing>
+      <script>HelloService.getInstance().action1(message);</script>
+    </scriptTask>
+
+    <scriptTask id="Action2" name="Action2">
+      <incoming>_jbpm-unique-1-_jbpm-unique-4</incoming>
+      <outgoing>_jbpm-unique-4-_jbpm-unique-3</outgoing>
+      <script>HelloService.getInstance().action2(message);</script>
+    </scriptTask>
+    <inclusiveGateway id="GW_2" name="Gateway" gatewayDirection="Converging">
+      <incoming>_2-_jbpm-unique-3</incoming>
+      <incoming>_jbpm-unique-4-_jbpm-unique-3</incoming>
+      <outgoing>_jbpm-unique-3-_jbpm-unique-5</outgoing>
+    </inclusiveGateway>
+
+    <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-5" sourceRef="GW_2" targetRef="Action3" />
+    <scriptTask id="Action3" name="Action3">
+      <incoming>_jbpm-unique-3-_jbpm-unique-5</incoming>
+      <outgoing>_jbpm-unique-5-_jbpm-unique-6</outgoing>
+      <script>HelloService.getInstance().action3(message);</script>
+    </scriptTask>
+    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-6" sourceRef="Action3" targetRef="BRT_2" />
+
+    <businessRuleTask id="BRT_2" name="A" implementation="##unspecified" g:ruleFlowGroup="Group1">
+      <incoming>_jbpm-unique-5-_jbpm-unique-6</incoming>
+      <outgoing>_jbpm-unique-6-_3</outgoing>
+      <ioSpecification>
+        <inputSet />
+        <outputSet />
+      </ioSpecification>
+    </businessRuleTask>
+    <sequenceFlow id="_jbpm-unique-6-_3" sourceRef="BRT_2" targetRef="END" />
+
+    <endEvent id="END">
+      <incoming>_jbpm-unique-6-_3</incoming>
+      <inputSet />
+      <terminateEventDefinition id="_3_ED_1" />
+    </endEvent>
+
   </process>
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="com.javacodegeeks.drools">
-      <bpmndi:BPMNShape bpmnElement="_2">
-        <dc:Bounds x="388" y="110" width="80" height="48" />
+      <bpmndi:BPMNShape bpmnElement="Action1">
+        <dc:Bounds x="-15.0" y="-15.0" width="30.0" height="30.0" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="__1">
-        <dc:Bounds x="172" y="62" width="48" height="48" />
+      <bpmndi:BPMNShape bpmnElement="start">
+        <dc:Bounds x="-15.0" y="-15.0" width="30.0" height="30.0" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_3">
-        <dc:Bounds x="835" y="204" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1">
+<!--      <bpmndi:BPMNShape bpmnElement="_3">-->
+<!--        <dc:Bounds x="835" y="204" width="48" height="48" />-->
+<!--      </bpmndi:BPMNShape>-->
+      <bpmndi:BPMNShape bpmnElement="GW_2">
         <dc:Bounds x="307" y="201" width="48" height="48" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="308" y="249" width="46" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3">
-        <dc:Bounds x="505" y="198" width="48" height="48" />
+      <bpmndi:BPMNShape bpmnElement="GW_2">
+        <dc:Bounds x="-15.0" y="-15.0" width="30.0" height="30.0" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="506" y="246" width="46" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4">
-        <dc:Bounds x="396" y="279" width="80" height="48" />
+      <bpmndi:BPMNShape bpmnElement="Action2">
+        <dc:Bounds x="-15.0" y="-15.0" width="30.0" height="30.0" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5">
         <dc:Bounds x="595" y="200" width="80" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6">
-        <dc:Bounds x="719" y="204" width="80" height="48" />
+      <bpmndi:BPMNShape bpmnElement="BRT_2">
+        <dc:Bounds x="-15.0" y="-15.0" width="30.0" height="30.0" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_2">
         <di:waypoint x="331" y="225" />
@@ -141,7 +154,16 @@
         <di:waypoint x="759" y="228" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="BRT_1_di" bpmnElement="BRT_1">
-        <dc:Bounds x="156" y="201" width="80" height="48" />
+        <dc:Bounds x="-15.0" y="-15.0" width="30.0" height="30.0" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="GW_1">
+        <dc:Bounds height="30.0" width="30.0" x="-15.0" y="-15.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Action3">
+        <dc:Bounds height="30.0" width="30.0" x="-15.0" y="-15.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="END">
+        <dc:Bounds height="30.0" width="30.0" x="-15.0" y="-15.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Start2BR_1_di" bpmnElement="Start2BR_1">
         <di:waypoint x="236" y="225" />

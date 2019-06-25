@@ -1,0 +1,17 @@
+RuleSet;rules;;;;;;
+Import;com.javainuse.model.Customer;;;;;;
+Notes;Decision tables for discount calculation;;;;;;
+;;;;;;;
+RuleTable DiscountCalculation;;;;;;;
+NAME;CONDITION;CONDITION;ACTION;;;;
+;customerObject: Customer;;;;;;
+;product_code in ($param);cat_id in ($param);"customerObject.setDiscount($param);";;;;
+NAME;;;Set Discount;;;;
+Standard Customer;‘03.01.00’  , ‘03.01.01’;83;15;;;;
+Premium Customer;‘03.01.00’  , ‘03.01.01’;0;25;;;;
+
+
+;;;;
+
+
+;;;;

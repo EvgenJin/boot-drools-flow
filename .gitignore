@@ -25,3 +25,11 @@ target/*
 boot-drools-flow.iml
 target/classes/rules/Sample.drl
 target/classes/rules/workFlowExample.bpmn
+.DS_Store
+src/.DS_Store
+src/main/.DS_Store
+src/main/java/.DS_Store
+src/main/java/com/.DS_Store
+src/main/java/com/javainuse/.DS_Store
+.DS_Store
+src/main/resources/.DS_Store
